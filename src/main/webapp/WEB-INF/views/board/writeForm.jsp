@@ -27,7 +27,7 @@
 	<c:import url="../default/header.jsp"/>
 <div class="wrap">
 	<div style="width:400px; margin: 0 auto;">
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="${contextPath }/board/writeSave" method="post" enctype="multipart/form-data">
 		<b>작성자</b><br>
 		<input type="text" name="id" size="50" value="${loginUser }" readonly>
 		<hr>
