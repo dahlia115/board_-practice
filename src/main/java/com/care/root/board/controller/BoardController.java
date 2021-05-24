@@ -18,6 +18,10 @@ public class BoardController {
 		bs.selectAllBoardList(model);
 		return "board/boardAllList";
 	}
+	@GetMapping ("writeForm")
+	public String writeForm() {
+		return "board/writeForm";
+	}
 }
 
 
