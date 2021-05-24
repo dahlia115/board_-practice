@@ -1,6 +1,13 @@
 package com.care.root.board.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class BoardFileServiceImpl implements BoardFileService {
 
@@ -15,6 +22,25 @@ public class BoardFileServiceImpl implements BoardFileService {
 			message += "location.href='/root/board/writeForm';</script>";			
 		}
 		return message;
+	}
+
+	@Override
+	public String saveFile(MultipartFile file) {
+		SimpleDateFormat simpl = new SimpleDateFormat("yyyyMMddHHmmss-");
+		Calendar calendar = Calendar.getInstance();
+		String sysFileName =
+				simpl.format(calendar.getTime()) + file.getOriginalFilename();
+		File saveFile = new File(IMAGE_REPO+"/"+sysFileName);
+		
+	
+		try {
+			file.transferTo(saveFile);
+		} catch (IllegalStateException | IOException e) {
+			
+			e.printStackTrace();
+		}
+	
+		return sysFileName;
 	}
 
 }

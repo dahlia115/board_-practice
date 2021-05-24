@@ -28,12 +28,14 @@ public class BoardServiceImpl implements BoardService{
 		dto.setId((String) session.getAttribute( MemberSessionName.LOGIN));
 	
 		MultipartFile file = mul.getFile("image_file_name");
+
+		BoardFileService bfs = new BoardFileServiceImpl();
+		
 		if(file.isEmpty()) { //파일이 비어있으면 true
 			dto.setImageFileName("nan");
 		}else { //파일이 존재하는 경우
-			
+			dto.setImageFileName( bfs.saveFile(file) ); 
 		}
-		BoardFileService bfs = new BoardFileServiceImpl();
 		/*		 
 		int result = mapper.writeSave(dto);
 		String message = bfs.getMessage(result, request);//성공인지 실패인지 메세지
