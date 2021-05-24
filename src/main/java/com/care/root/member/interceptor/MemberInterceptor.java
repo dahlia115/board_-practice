@@ -25,9 +25,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter
 			//response.sendRedirect("login");
 			response.setContentType("text/html; charset=utf-8");//클라이언트로 전달할 타입
 			PrintWriter out = response.getWriter();
-			out.print("<script>alert('로그인 해라');"+
-			" location.href='/root/member/login';</script>");
-			//" location.href='"+ request.getContextPath() +"/member/login';</script>");
+			out.print("<script>alert('로그인 해라'); location.href='login';</script>");
 			return false;
 		}
 		return true;
