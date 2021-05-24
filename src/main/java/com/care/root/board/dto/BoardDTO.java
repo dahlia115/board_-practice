@@ -1,5 +1,8 @@
 package com.care.root.board.dto;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 public class BoardDTO {
 	private int writeNo;
 	private String title;
@@ -30,8 +33,9 @@ public class BoardDTO {
 	public String getSaveDate() {
 		return saveDate;
 	}
-	public void setSaveDate(String saveDate) {
-		this.saveDate = saveDate;
+	public void setSaveDate(Timestamp saveDate) {
+		SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+		this.saveDate = format.format(saveDate);
 	}
 	public int getHit() {
 		return hit;
