@@ -28,14 +28,23 @@
 	<beans:bean id="testboard"
 		 class="com.care.root.testBoard.BoardTestInterceptor" />
 		 
+<beans:bean id="boardInterceptor"
+		 class="com.care.root.board.interceptor.BoardInterceptor" />
+
 <beans:bean id="autoLogin"
 		 class="com.care.root.member.interceptor.AutoLoginInterceptor" />
 		 
 	<interceptors>
 		<interceptor>
+			<mapping path="/board/writeForm" />
+			<beans:ref bean="boardInterceptor" />
+		</interceptor>
+
+		<interceptor>
 			<mapping path="/index" />
 			<beans:ref bean="autoLogin" />
 		</interceptor>
+	
 		
 		<interceptor>
 			<mapping path="/test/board" />
