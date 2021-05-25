@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.care.root.board.Message.MessageDTO;
 import com.care.root.board.dto.BoardDTO;
 import com.care.root.member.session_name.MemberSessionName;
 import com.care.root.mybatis.board.BoardMapper;
@@ -50,6 +51,25 @@ public class BoardServiceImpl implements BoardService{
 	}
 	private void upHit(int writeNo) {
 		mapper.upHit(writeNo);
+	}
+	@Override
+	public String boardDelete(int writeNo, String imageFileName, HttpServletRequest request) {
+		BoardFileService bfs = new BoardFileServiceImpl();
+		int result = mapper.delete(writeNo);
+		
+		MessageDTO dto = new MessageDTO();
+		
+		if(result == 1) { //DB삭제성공
+			bfs.deleteImage(imageFileName);
+		}
+		dto.setRequest(request);
+		dto.setResult(result);
+		dto.setSuccessMessage("삭제 성공");
+		dto.setSuccessURL("/board/boardAllList");
+		dto.setFailMessage("문제 발생");
+		dto.setFailURL("/board/contentView");
+		
+		return bfs.getMessage(dto);
 	}
 }
 

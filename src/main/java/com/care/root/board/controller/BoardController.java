@@ -62,6 +62,18 @@ public class BoardController {
 		FileCopyUtils.copy(in, response.getOutputStream());
 		in.close();
 	}
+	@GetMapping("delete")
+	public void boardDelete(@RequestParam int writeNo,
+					@RequestParam String imageFileName,
+					HttpServletResponse response,
+					HttpServletRequest request) throws Exception{
+		String message = bs.boardDelete(writeNo,imageFileName,request);
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(message);
+	}
+	
 }
 
 
