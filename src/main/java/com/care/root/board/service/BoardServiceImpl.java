@@ -71,6 +71,35 @@ public class BoardServiceImpl implements BoardService{
 		
 		return bfs.getMessage(dto);
 	}
+	@Override
+	public String modify(MultipartHttpServletRequest mul, HttpServletRequest request) {
+		BoardDTO dto = new BoardDTO();
+		dto.setWriteNo(Integer.parseInt(mul.getParameter("writeNo")));
+		dto.setTitle(mul.getParameter("title"));
+		dto.setContent(mul.getParameter("content"));
+		
+		MultipartFile file = mul.getFile("imageFileName");
+		BoardFileService bfs = new BoardFileServiceImpl();
+		
+		if(file.isEmpty()) { //비어있다면 이미지 변경안됨
+			dto.setImageFileName(mul.getParameter("originFileName"));//기존 이름 그대로 넣어준다
+		}else {//이미지 변경
+			dto.setImageFileName(bfs.saveFile(file));
+			bfs.deleteImage(mul.getParameter("originFileName"));
+			
+		}
+		
+		int result = mapper.modify(dto);
+		MessageDTO mDto = new MessageDTO();
+		mDto.setResult(result);
+		mDto.setRequest(request);
+		mDto.setSuccessMessage("수정 완료");
+		mDto.setSuccessURL("/board/boardAllList");
+		mDto.setFailMessage("문제 발생");
+		mDto.setFailURL("/board/bodufy_form");
+		
+		return bfs.getMessage(mDto);
+	}
 }
 
 

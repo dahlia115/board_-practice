@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 public interface BoardService {
@@ -17,5 +17,6 @@ public interface BoardService {
 					String imageFileName,
 					HttpServletRequest request);
 	
+	public String modify(MultipartHttpServletRequest mul,HttpServletRequest request);
 }
 

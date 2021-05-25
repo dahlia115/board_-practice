@@ -73,7 +73,20 @@ public class BoardController {
 		PrintWriter out = response.getWriter();
 		out.print(message);
 	}
-	
+	@GetMapping("modify_form")
+	public String modifyForm(@RequestParam int writeNo, Model model) {
+		bs.contentView(writeNo, model); //게시글 보기 기능
+		return "board/modify_form";
+	}
+	@PostMapping("modify")
+	public void modify(MultipartHttpServletRequest mul,
+						HttpServletRequest request,
+						HttpServletResponse response) throws Exception{
+		String message = bs.modify(mul,request);
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print(message);
+	}
 }
 
 

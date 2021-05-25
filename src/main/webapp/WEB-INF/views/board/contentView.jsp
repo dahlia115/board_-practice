@@ -37,9 +37,10 @@
 	<tr>
 		<td colspan="4">
 			<c:if test="${loginUser ==  personalData.id}">
-				<input type="button" onclick="" value="수정하기">
 				<input type="button" onclick=
-"location.href='${contextPath }/board/delete?writeNo=${personalData.writeNo }&imageFileName=${personalData.imageFileName }'" value="삭제하기"><!-- 번호로 삭제(이미지도 삭제해야함) -->
+				"location.href='${contextPath }/board/modify_form?writeNo=${personalData.writeNo }'" value="수정하기">
+				<input type="button" onclick=
+				"location.href='${contextPath }/board/delete?writeNo=${personalData.writeNo }&imageFileName=${personalData.imageFileName }'" value="삭제하기"><!-- 번호로 삭제(이미지도 삭제해야함) -->
 			</c:if>
 			<c:if test="${loginUser != null}">
 				<input type="button" onclick="" value="답글달기">

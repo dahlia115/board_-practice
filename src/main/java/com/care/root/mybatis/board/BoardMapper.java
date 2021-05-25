@@ -10,4 +10,5 @@ public interface BoardMapper {
 	public BoardDTO contentView(int writeNo);
 	public void upHit(int writeNo);
 	public int delete(int writeNo);
+	public int modify(BoardDTO dto);
 }

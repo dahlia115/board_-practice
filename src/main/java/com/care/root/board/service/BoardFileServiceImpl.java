@@ -62,7 +62,7 @@ public class BoardFileServiceImpl implements BoardFileService {
 		}
 		return message;
 	}
-}
+}  
 
 
 
