@@ -43,6 +43,14 @@ public class BoardServiceImpl implements BoardService{
 		 */
 		return bfs.getMessage(mapper.writeSave(dto), request);
 	}
+	@Override
+	public void contentView(int writeNo, Model model) {//디비에 접근해 번호와 일치하는 데이터를 가져온다
+		model.addAttribute("personalData", mapper.contentView(writeNo));
+		upHit(writeNo);
+	}
+	private void upHit(int writeNo) {
+		mapper.upHit(writeNo);
+	}
 }
 
 
