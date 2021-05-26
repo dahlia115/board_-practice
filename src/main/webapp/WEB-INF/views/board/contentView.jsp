@@ -73,7 +73,7 @@
 	}
 </style>
 </head>
-<body>
+<body onload="replyData()"> <!-- 리플 보이게 처리 -->
 <c:import url="../default/header.jsp"/>
 <div class="wrap">
 <table border="1" class="table">
