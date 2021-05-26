@@ -50,7 +50,7 @@
 					html += "<div align='left'><b>아이디 : </b>"+data.id+"님 / ";
 					html += "<b>작성일</b> : "+writeDate+"<br>"
 					html += "<b>제목</b> : "+data.title+"<br>"
-					html += "<b>내용</b>"+data.content+"<hr></div>"
+					html += "<b>내용</b> : "+data.content+"<hr></div>"
 				})
 				$("#reply").html(html)
 			},error:function(){

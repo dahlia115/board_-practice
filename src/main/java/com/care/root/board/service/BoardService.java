@@ -10,7 +10,7 @@ import com.care.root.board.dto.BoardDTO;
 import com.care.root.board.dto.BoardRepDTO;
 
 public interface BoardService {
-	public void selectAllBoardList(Model model);
+	public void selectAllBoardList(Model model, int num);
 	public String writeSave(MultipartHttpServletRequest mul,
 									HttpServletRequest request);
 	public void contentView (int writeNo, Model model );

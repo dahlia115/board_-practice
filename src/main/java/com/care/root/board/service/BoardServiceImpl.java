@@ -20,8 +20,18 @@ import com.care.root.mybatis.board.BoardMapper;
 @Service
 public class BoardServiceImpl implements BoardService{
 	@Autowired BoardMapper mapper;
-	public void selectAllBoardList(Model model) {
-		model.addAttribute("boardList",mapper.selectAllBoardList());
+	
+	public void selectAllBoardList(Model model, int num) {
+		int allCount = mapper.selectBoardCount();//총 글의 갯수
+		int pageLetter = 3; //한 페이지에 3개의 글 표현
+		int repeat = allCount / pageLetter;
+		if(allCount % pageLetter != 0) {
+			repeat += 1;
+		}
+		int end =num * pageLetter;//마지막 번호
+		int start = end + 1 - pageLetter;//시작 번호
+		model.addAttribute("repeat", repeat);
+		model.addAttribute("boardList",mapper.selectAllBoardList(start,end));
 	}
 	@Override
 	public String writeSave(MultipartHttpServletRequest mul, HttpServletRequest request) {
