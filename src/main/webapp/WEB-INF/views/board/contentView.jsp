@@ -43,9 +43,12 @@
 			success: function(rep){
 				let html = ""
 				rep.forEach(function(data){
-					
+					let date = new Date(data.write_date)
+					let writeDate = date.getFullYear()+"년"+(date.getMonth()+1)+"월"
+					writeDate += date.getDate()+"일"+date.getHours()+"시"
+					writeDate += date.getMinutes()+"분"+date.getSeconds()+"초"
 					html += "<div align='left'><b>아이디 : </b>"+data.id+"님 / ";
-					html += "<b>작성일</b> : "+data.write_date+"<br>"
+					html += "<b>작성일</b> : "+writeDate+"<br>"
 					html += "<b>제목</b> : "+data.title+"<br>"
 					html += "<b>내용</b>"+data.content+"<hr></div>"
 				})
