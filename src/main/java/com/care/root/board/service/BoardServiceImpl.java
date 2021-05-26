@@ -1,5 +1,7 @@
 package com.care.root.board.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -105,6 +107,10 @@ public class BoardServiceImpl implements BoardService{
 	public void addReply(BoardRepDTO dto) {
 		mapper.addReply(dto);
 		
+	}
+	@Override
+	public List<BoardRepDTO> getRepList(int write_group) {
+		return mapper.getRepList(write_group);
 	}
 }
 

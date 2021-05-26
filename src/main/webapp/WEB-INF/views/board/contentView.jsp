@@ -24,17 +24,37 @@
                  form[arr[i].name] = arr[i].value
          }
          $.ajax({
-			url: "addReply", type: "POST", 
+			url: "addReply", type: "POST", <%--dataType: "json", 리턴 값이 없어서 필요없음--%>
 			data : JSON.stringify(form),
 			contentType: "application/json; charset=utf-8",
-			success: function(){
+			success: function(list){
 				alert("성공적으로 답글이 달렸습니다"); slide_hide();
+				replyData();
 			}, error: function(){
 				alert("문제 발생!!!");
 			}
 		})
 	}
 	
+	function replyData(){
+		$.ajax({
+			url:"replyData/"+${personalData.writeNo}, type:"GET", 
+			dataType:"json",
+			success: function(rep){
+				let html = ""
+				rep.forEach(function(data){
+					
+					html += "<div align='left'><b>아이디 : </b>"+data.id+"님 / ";
+					html += "<b>작성일</b> : "+data.write_date+"<br>"
+					html += "<b>제목</b> : "+data.title+"<br>"
+					html += "<b>내용</b>"+data.content+"<hr></div>"
+				})
+				$("#reply").html(html)
+			},error:function(){
+				alert('데이터를 가져올 수 없습니다')
+			}
+		})
+	}
 </script>
 
 <style type="text/css">
@@ -80,7 +100,8 @@
 	</tr>
 	
 	<tr>
-		<td colspan="4">
+		<td colspan="4" align="center">
+			<div id="reply"></div>
 			<c:if test="${loginUser ==  personalData.id}">
 				<input type="button" onclick=
 				"location.href='${contextPath }/board/modify_form?writeNo=${personalData.writeNo }'" value="수정하기">

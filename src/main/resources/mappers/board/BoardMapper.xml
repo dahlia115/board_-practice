@@ -13,6 +13,14 @@
 		<result property="imageFileName" column="image_file_name"/>
 		<result property="id" column="id"/>
 	</resultMap>
+	
+	<resultMap type="com.care.root.board.dto.BoardRepDTO" id="reply">
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="write_date" column="write_date"/>
+	</resultMap>
+	
 	<select id="selectAllBoardList" resultMap="board">
 		select * from mvc_board
 	</select>
@@ -37,6 +45,10 @@
 		insert into reply(id,title,content,write_group)
 			values(#{id},#{title},#{content},#{write_group})
 	</insert>
+	<select id="getRepList" resultMap="reply">
+		select * from reply where write_group=#{write_group}
+										order by write_date desc 
+	</select>
 </mapper>
 
 

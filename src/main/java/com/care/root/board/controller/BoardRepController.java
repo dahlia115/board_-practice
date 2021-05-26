@@ -1,10 +1,13 @@
 package com.care.root.board.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,4 +30,21 @@ public class BoardRepController implements MemberSessionName{
     	 dto.setContent((String)map.get("content"));
     	 bs.addReply(dto);
      }
+     @GetMapping(value = "replyData/{write_group}", produces = "application/json; charset=utf-8" )
+     public List<BoardRepDTO> replyData(@PathVariable int write_group){
+    	 return bs.getRepList(write_group);
+     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

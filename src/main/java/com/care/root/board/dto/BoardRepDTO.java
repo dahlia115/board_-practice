@@ -7,8 +7,14 @@ public class BoardRepDTO {
 	private String title;
 	private String content;
 	private int write_group;
-	private Timestamp wrtie_data;
-	
+	private Timestamp write_date;
+					  
+	public Timestamp getWrite_date() {
+		return write_date;
+	}
+	public void setWrite_date(Timestamp write_date) {
+		this.write_date = write_date;
+	}
 	public String getId() {
 		return id;
 	}
@@ -33,10 +39,6 @@ public class BoardRepDTO {
 	public void setWrite_group(int write_group) {
 		this.write_group = write_group;
 	}
-	public Timestamp getWrtie_data() {
-		return wrtie_data;
-	}
-	public void setWrtie_data(Timestamp wrtie_data) {
-		this.wrtie_data = wrtie_data;
-	}
+	
+	
 }

@@ -20,7 +20,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.care.root.board.service.BoardFileService;
 import com.care.root.board.service.BoardService;
 
-import oracle.jdbc.proxy.annotation.Post;
+
 
 @Controller
 @RequestMapping("board")

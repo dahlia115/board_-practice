@@ -13,4 +13,5 @@ public interface BoardMapper {
 	public int delete(int writeNo);
 	public int modify(BoardDTO dto);
 	public void addReply(BoardRepDTO dto);
+	public List<BoardRepDTO> getRepList(int write_group);
 }
