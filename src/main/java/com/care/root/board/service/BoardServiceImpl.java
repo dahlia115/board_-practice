@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.care.root.board.Message.MessageDTO;
 import com.care.root.board.dto.BoardDTO;
+import com.care.root.board.dto.BoardRepDTO;
 import com.care.root.member.session_name.MemberSessionName;
 import com.care.root.mybatis.board.BoardMapper;
 
@@ -99,6 +100,11 @@ public class BoardServiceImpl implements BoardService{
 		mDto.setFailURL("/board/bodufy_form");
 		
 		return bfs.getMessage(mDto);
+	}
+	@Override
+	public void addReply(BoardRepDTO dto) {
+		mapper.addReply(dto);
+		
 	}
 }
 
